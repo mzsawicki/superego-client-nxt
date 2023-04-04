@@ -1,0 +1,60 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://bw7lh532ke44a"]
+
+[ext_resource type="Texture2D" uid="uid://bgn10js18mt2m" path="res://ui/Tiny Wonder UI/buttons.png" id="1_55g1l"]
+[ext_resource type="StyleBox" uid="uid://cqpyu6qn1u2pv" path="res://button_texture_normal.tres" id="1_h7elq"]
+[ext_resource type="Texture2D" uid="uid://c4js3vo440f1f" path="res://ui/Tiny Wonder UI/base.png" id="1_hdrih"]
+[ext_resource type="FontFile" uid="uid://b4h6hmbw2ohpt" path="res://fonts/VT323-Regular.ttf" id="3_upf54"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpxd1"]
+atlas = ExtResource("1_55g1l")
+region = Rect2(15.9742, 128.08, 16.2157, 15.9454)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pebe6"]
+texture = SubResource("AtlasTexture_wpxd1")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ke21g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e2gp"]
+atlas = ExtResource("1_hdrih")
+region = Rect2(6.75536, 438.701, 34.3232, 34.3364)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r5vhh"]
+texture = SubResource("AtlasTexture_6e2gp")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhlnw"]
+atlas = ExtResource("1_hdrih")
+region = Rect2(6.91562, 390.783, 34.3232, 34.3232)
+margin = Rect2(0, 0, 0, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bf8w8"]
+texture = SubResource("AtlasTexture_yhlnw")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("3_upf54")
+Button/styles/disabled = ExtResource("1_h7elq")
+Button/styles/hover = ExtResource("1_h7elq")
+Button/styles/normal = ExtResource("1_h7elq")
+Button/styles/pressed = SubResource("StyleBoxTexture_pebe6")
+Fonts/fonts/large = ExtResource("3_upf54")
+Fonts/fonts/normal = ExtResource("3_upf54")
+HSeparator/constants/separation = 12
+HSeparator/styles/separator = SubResource("StyleBoxEmpty_ke21g")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("3_upf54")
+Label/styles/normal = SubResource("StyleBoxTexture_r5vhh")
+Panel/styles/panel = SubResource("StyleBoxTexture_bf8w8")

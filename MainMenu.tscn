@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmbgxnw4ud8un"]
+
+[ext_resource type="Texture2D" uid="uid://vsfibdgisst" path="res://ui/Clouds/Clouds 7/1.png" id="1_w8afm"]
+[ext_resource type="Shader" path="res://MainMenu.gdshader" id="2_vm7tm"]
+[ext_resource type="Texture2D" uid="uid://lhycjuqd2jm1" path="res://ui/Clouds/Clouds 7/4.png" id="3_1ebd3"]
+[ext_resource type="Script" path="res://AddCardButton.gd" id="4_nf17h"]
+[ext_resource type="Script" path="res://QuitButton.gd" id="4_wus6u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayeuk"]
+shader = ExtResource("2_vm7tm")
+shader_parameter/scroll_speed = 0.05
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 2.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_w8afm")
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+material = SubResource("ShaderMaterial_ayeuk")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -324.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_1ebd3")
+stretch_mode = 1
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterSection" type="Control" parent="Background/ReferenceRect"]
+layout_mode = 1
+anchor_left = 0.3
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.9
+offset_left = -182.6
+offset_right = 182.6
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuCenterPanel" type="Panel" parent="Background/ReferenceRect/CenterSection"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+layout_mode = 2
+text = "SUPER-EGO"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="JoinGameButton" type="Button" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Join game"
+
+[node name="AddCardButton" type="Button" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Add new card"
+script = ExtResource("4_nf17h")
+
+[node name="SettingsButton" type="Button" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="AboutButton" type="Button" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+layout_mode = 2
+text = "About"
+
+[node name="QuitButton" type="Button" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("4_wus6u")
