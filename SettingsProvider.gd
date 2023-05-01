@@ -9,6 +9,12 @@ func get_game_server_url() -> String:
 	var url = settings_file.get_value(
 		"game_server", "url", self._constants.DEFAULT_GAME_SERVER_URL);
 	return url;
+	
+func get_web_server_url() -> String:
+	var settings_file = self._fetch_settings_file();
+	var url = settings_file.get_value(
+		"web_server", "url", self._constants.DEFAULT_WEB_SERVER_URL);
+	return url;
 
 func _ready():
 	if not self._settings_file_exists():
