@@ -45,5 +45,6 @@ HSeparator/styles/separator = SubResource("StyleBoxEmpty_ke21g")
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("3_upf54")
 Label/styles/normal = SubResource("StyleBoxTexture_r5vhh")
+LineEdit/fonts/font = ExtResource("3_upf54")
 Panel/styles/panel = ExtResource("1_2mk6g")
 TextEdit/fonts/font = ExtResource("3_upf54")

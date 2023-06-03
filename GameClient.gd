@@ -12,20 +12,30 @@ var ACTION_GUESS = "GUESS;"
 var ACTION_READY = "READY";
 var STATUS_GAME_STATE = "STAT";
 
+var _game_server_url = null;
 var _settings = SettingsProvider.new();
 var _socket = WebSocketPeer.new();
 var _player_code = null;
 var _last_state = null;
+var _initialized = false;
+var _connected = false;
+
+func set_game_server_url(url):
+	self._game_server_url = url;
+	
+func connected():
+	return self._connected;
 
 func connect_to_game_server(player_code):
 	self._player_code = player_code;
-	var server_url = self._settings.get_game_server_url();
-	print("Connecting to server on url: %s" % server_url);
-	var error = self._socket.connect_to_url(server_url);
+	print("Connecting to server on url: %s" % self._game_server_url);
+	
+	var error = self._socket.connect_to_url(self._game_server_url);
 	if error != OK:
 		print("Unable to connect. Error: %d" % error);
 	else:
-		self._initialize_state();
+		self._connected = true;
+		set_process(true)
 		
 func send_card_change_request():
 	var data = {
@@ -61,11 +71,12 @@ func last_state():
 	return self._last_state;
 		
 func _ready():
-	pass
+	set_process(false)
 
 func _initialize_state():
 	self._subscribe();
 	self._fetch_last_state();
+	self._initialized = true;
 
 func _subscribe():
 	print("Subscribing to game server...")
@@ -85,24 +96,17 @@ func _fetch_last_state():
 	
 func _send(data):
 	var json = JSON.stringify(data);
-	var encoded = json.to_utf8_buffer();
-	var error = self._socket.send(encoded);
-	if error != OK:
-		push_warning("Error occured during sending data to game server. Error: " % error);
+	var msg = json.to_utf8_buffer()
+	self._socket.put_packet(msg)
 	
 func _process(delta):
 	self._socket.poll();
 	var state = self._socket.get_ready_state();
 	if state == WebSocketPeer.STATE_OPEN:
-		print("Socket is open, processing packets...")
-		self._process_packets();
-	elif state == WebSocketPeer.STATE_CLOSING:
-		print("Socket is closing...");
-	elif state == WebSocketPeer.STATE_CLOSED:
-		var code = self._socket.get_close_code();
-		var reason = self._socket.get_close_reason();
-		print("Socket closed with code: %d, reason %s. Clean: %s" % [code, reason, code != -1])
-		self.set_process(false);
+		if self._last_state == null and not self._initialized:
+			self._initialize_state();
+		else:
+			self._process_packets();
 
 func _process_packets():
 	while self._socket.get_available_packet_count():
@@ -116,6 +120,6 @@ func _process_next_packet():
 	if status == self.STATUS_GAME_STATE:
 		self._last_state = parsed_data["data"];
 		emit_signal("state_updated");
-		print("Client state updated")
+		print(self._last_state)
 	else:
 		push_warning("Encountered invalid server status: %s" % status)

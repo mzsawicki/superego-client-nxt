@@ -46,8 +46,15 @@ func _on_submit_button_pressed():
 func _on_add_card_request_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		$AcceptDialog.visible = true;
+		self._clear_edits();
 	else:
 		$FailureDialog.visible = true;
+		
+func _clear_edits():
+	$Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/QuestionContainer/TextEdit.clear();
+	$Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerAContainer/TextEdit.clear();
+	$Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerBContainer/TextEdit.clear();
+	$Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerCContainer/TextEdit.clear();
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4tfwb"]
@@ -144,7 +151,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Answer A"
 
-[node name="TextEdit" type="TextEdit" parent="Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerAContainer"]
+[node name="TextEdit" type="LineEdit" parent="Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerAContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -155,7 +162,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Answer B"
 
-[node name="TextEdit" type="TextEdit" parent="Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerBContainer"]
+[node name="TextEdit" type="LineEdit" parent="Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerBContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -166,7 +173,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Answer C"
 
-[node name="TextEdit" type="TextEdit" parent="Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerCContainer"]
+[node name="TextEdit" type="LineEdit" parent="Background/ReferenceRect/CenterSection/CenterPanel/VBoxContainer/AnswerCContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmbgxnw4ud8un"]
+[gd_scene load_steps=9 format=3 uid="uid://dmbgxnw4ud8un"]
 
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_56evq"]
 [ext_resource type="Texture2D" uid="uid://vsfibdgisst" path="res://ui/Clouds/Clouds 7/1.png" id="1_w8afm"]
 [ext_resource type="Shader" path="res://MainMenu.gdshader" id="2_vm7tm"]
 [ext_resource type="Texture2D" uid="uid://lhycjuqd2jm1" path="res://ui/Clouds/Clouds 7/4.png" id="3_1ebd3"]
+[ext_resource type="Script" path="res://JoinGameButton.gd" id="4_oxtjg"]
 [ext_resource type="Script" path="res://QuitButton.gd" id="4_wus6u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ayeuk"]
@@ -24,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_56evq")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -93,13 +96,24 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="NewGameButton" type="Button" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
 layout_mode = 2
-text = "New game"
+size_flags_horizontal = 3
+placeholder_text = "Enter your name here"
+
+[node name="ErrorLabel" type="Label" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
 
 [node name="JoinGameButton" type="Button" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
 layout_mode = 2
 text = "Join game"
+script = ExtResource("4_oxtjg")
+
+[node name="HSeparator3" type="HSeparator" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
+layout_mode = 2
 
 [node name="AddCardButton" type="Button" parent="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer"]
 layout_mode = 2
@@ -121,3 +135,11 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 script = ExtResource("4_wus6u")
+
+[node name="GameAvailableRequest" type="HTTPRequest" parent="."]
+
+[node name="PlayerCodeRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer/JoinGameButton" to="." method="_on_join_game_button_pressed"]
+[connection signal="request_completed" from="GameAvailableRequest" to="." method="_on_game_available_request_request_completed"]
+[connection signal="request_completed" from="PlayerCodeRequest" to="." method="_on_player_code_request_request_completed"]

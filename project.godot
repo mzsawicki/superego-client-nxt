@@ -15,6 +15,10 @@ run/main_scene="res://MainMenu.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
+[autoload]
+
+GameClient="*res://GameClient.gd"
+
 [debug]
 
 file_logging/enable_file_logging=true
