@@ -19,12 +19,16 @@ var _player_code = null;
 var _last_state = null;
 var _initialized = false;
 var _connected = false;
+var _connection_failed = false;
 
 func set_game_server_url(url):
 	self._game_server_url = url;
 	
 func connected():
 	return self._connected;
+	
+func connection_failed():
+	return self._connection_failed;
 
 func connect_to_game_server(player_code):
 	self._player_code = player_code;
@@ -33,6 +37,7 @@ func connect_to_game_server(player_code):
 	var error = self._socket.connect_to_url(self._game_server_url);
 	if error != OK:
 		print("Unable to connect. Error: %d" % error);
+		self._connection_failed = true;
 	else:
 		self._connected = true;
 		set_process(true)

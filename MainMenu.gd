@@ -12,11 +12,17 @@ func _ready():
 	self._url_base = self._settings.get_web_server_url();
 	self._game_status_url = _url_base + "/game";
 	self._players_url = _url_base + "/people?name=";
+	set_process(false);
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if GameClient.connected():
+		get_tree().change_scene_to_file("res://Game.tscn");
+	elif GameClient.connection_failed():
+		$Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer/ErrorLabel.text = "Connection to the game server failed"
+		$Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer/ErrorLabel.visible = true;
+		set_process(false);
 
 
 func _on_join_game_button_pressed():
@@ -49,6 +55,7 @@ func _on_player_code_request_request_completed(result, response_code, headers, b
 		var json = JSON.parse_string(body.get_string_from_utf8());
 		var player_code = json["guid"];
 		GameClient.connect_to_game_server(player_code);
+		set_process(true);
 	elif response_code == 404:
 		$Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer/ErrorLabel.text = "Player name not found on the game server."
 		$Background/ReferenceRect/CenterSection/MainMenuCenterPanel/VBoxContainer/ErrorLabel.visible = true;
