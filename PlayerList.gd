@@ -22,7 +22,7 @@ func _on_game_connection_game_updated():
 		var player_name = player_state.player_name
 		var player_points = player_state.points;
 		
-		var player_activity = "Not ready";
+		var player_activity = "Idle";
 		if player_state.awaited_to_answer:
 			player_activity = "Answering";
 		elif player_state.awaited_to_guess:

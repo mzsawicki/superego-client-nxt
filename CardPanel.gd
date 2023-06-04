@@ -18,5 +18,6 @@ func _on_game_connection_game_updated():
 	var player_state = game_state.get_player_by_code(GameClient.player_code());
 	if player_state.awaited_to_answer or player_state.awaited_to_guess:
 		self.visible = true;
+		
 	else:
 		self.visible = false;
