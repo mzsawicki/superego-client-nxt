@@ -19,6 +19,7 @@ func _on_game_connection_game_updated():
 	var is_ready = curr_player_state.is_ready;
 	if game_state.phase == "RESULT_PHASE" and not is_ready:
 		self.visible = true;
+		self.clear();
 		for player_state in game_state.player_states:
 			if player_state.points_change > 0:
 				var item_id = self.add_item("%s won %d points." % [player_state.player_name, player_state.points_change])
