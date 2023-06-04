@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://dbhcct53d3uot"]
+
+[ext_resource type="Texture2D" uid="uid://c4js3vo440f1f" path="res://ui/Tiny Wonder UI/base.png" id="1_ggce4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e2gp"]
+atlas = ExtResource("1_ggce4")
+region = Rect2(6.75536, 438.701, 34.3232, 34.3364)
+
+[resource]
+texture = SubResource("AtlasTexture_6e2gp")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0

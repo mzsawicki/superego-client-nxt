@@ -1,8 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv4fgstb51xta"]
+[gd_scene load_steps=23 format=3 uid="uid://cv4fgstb51xta"]
 
 [ext_resource type="Texture2D" uid="uid://vsfibdgisst" path="res://ui/Clouds/Clouds 7/1.png" id="1_8joum"]
 [ext_resource type="Shader" path="res://MainMenu.gdshader" id="2_7yrd2"]
 [ext_resource type="Texture2D" uid="uid://lhycjuqd2jm1" path="res://ui/Clouds/Clouds 7/4.png" id="3_1tps2"]
+[ext_resource type="Script" path="res://RoundLabel.gd" id="4_0ti76"]
+[ext_resource type="Script" path="res://CardTextLabel.gd" id="4_3vw3b"]
+[ext_resource type="Script" path="res://GameConnection.gd" id="4_4bfgf"]
+[ext_resource type="Script" path="res://Log.gd" id="4_psva8"]
+[ext_resource type="Script" path="res://AnswerAButton.gd" id="5_5wqwo"]
+[ext_resource type="Script" path="res://BankLabel.gd" id="5_g3tv1"]
+[ext_resource type="Script" path="res://StatusLabel.gd" id="6_b4ulx"]
+[ext_resource type="Script" path="res://AnswerBButton.gd" id="6_unv24"]
+[ext_resource type="Script" path="res://PlayerList.gd" id="6_wy82p"]
+[ext_resource type="Script" path="res://LogScroll.gd" id="7_4yp5y"]
+[ext_resource type="Script" path="res://AnswerCButton.gd" id="7_fp0jh"]
+[ext_resource type="Script" path="res://CardPanel.gd" id="8_6e8u1"]
+[ext_resource type="Script" path="res://ContextMenuPanel.gd" id="13_gp2sr"]
+[ext_resource type="Script" path="res://ChangeCardButton.gd" id="15_ioln3"]
+[ext_resource type="Script" path="res://BetButton.gd" id="16_63u4n"]
+[ext_resource type="Script" path="res://ResultsLabel.gd" id="18_vi1rs"]
+[ext_resource type="Script" path="res://ResultsList.gd" id="19_rxdvd"]
+[ext_resource type="Script" path="res://ReadyButton.gd" id="20_afemg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iejag"]
 shader = ExtResource("2_7yrd2")
@@ -40,20 +58,50 @@ stretch_mode = 1
 
 [node name="GameSummaryPanel" type="Panel" parent="Background"]
 layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 0.1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/GameSummaryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoundLabel" type="Label" parent="Background/GameSummaryPanel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("4_0ti76")
+
+[node name="BankLabel" type="Label" parent="Background/GameSummaryPanel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("5_g3tv1")
 
 [node name="StatusPanel" type="Panel" parent="Background"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 0.7
 grow_horizontal = 2
 
-[node name="PlayerListPanel" type="Panel" parent="Background"]
+[node name="StatusLabel" type="Label" parent="Background/StatusPanel"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_b4ulx")
 
 [node name="LogPanel" type="Panel" parent="Background"]
 layout_mode = 1
@@ -65,6 +113,27 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 3
 
+[node name="LogScroll" type="ScrollContainer" parent="Background/LogPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.1
+anchor_right = 0.99
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("7_4yp5y")
+
+[node name="Log" type="RichTextLabel" parent="Background/LogPanel/LogScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+fit_content = true
+scroll_following = true
+script = ExtResource("4_psva8")
+
 [node name="CardPanel" type="Panel" parent="Background"]
 layout_mode = 1
 anchors_preset = -1
@@ -75,3 +144,141 @@ anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+script = ExtResource("8_6e8u1")
+
+[node name="CardTextLabel" type="Label" parent="Background/CardPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.6
+autowrap_mode = 3
+clip_text = true
+script = ExtResource("4_3vw3b")
+
+[node name="AnswerButtonsPanel" type="VBoxContainer" parent="Background/CardPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.65
+anchor_right = 0.9
+anchor_bottom = 0.9
+
+[node name="AnswerAButton" type="Button" parent="Background/CardPanel/AnswerButtonsPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_5wqwo")
+
+[node name="AnswerBButton" type="Button" parent="Background/CardPanel/AnswerButtonsPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("6_unv24")
+
+[node name="AnswerCButton" type="Button" parent="Background/CardPanel/AnswerButtonsPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("7_fp0jh")
+
+[node name="PlayerListContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Background/PlayerListContainer"]
+layout_mode = 2
+text = "Players"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PlayerList" type="ItemList" parent="Background/PlayerListContainer"]
+layout_mode = 2
+auto_height = true
+script = ExtResource("6_wy82p")
+
+[node name="ContextMenuPanel" type="Panel" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.6
+anchor_right = 0.29
+anchor_bottom = 0.7
+grow_vertical = 2
+script = ExtResource("13_gp2sr")
+
+[node name="BetButton" type="CheckButton" parent="Background/ContextMenuPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Bet 1 point"
+alignment = 1
+script = ExtResource("16_63u4n")
+
+[node name="ChangeCardButton" type="Button" parent="Background/ContextMenuPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Change card "
+script = ExtResource("15_ioln3")
+
+[node name="ResultsPanel" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.1
+anchor_right = 0.7
+anchor_bottom = 0.8
+
+[node name="ResultsLabel" type="Label" parent="Background/ResultsPanel"]
+layout_mode = 2
+text = "Results"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("18_vi1rs")
+
+[node name="ResultsList" type="ItemList" parent="Background/ResultsPanel"]
+layout_mode = 2
+auto_height = true
+script = ExtResource("19_rxdvd")
+
+[node name="ReadyButton" type="Button" parent="Background/ResultsPanel"]
+layout_mode = 2
+text = "OK"
+script = ExtResource("20_afemg")
+
+[node name="GameConnection" type="Node" parent="."]
+script = ExtResource("4_4bfgf")
+
+[connection signal="toggled" from="Background/ContextMenuPanel/BetButton" to="Background/ContextMenuPanel/BetButton" method="_on_toggled"]
+[connection signal="pressed" from="Background/ContextMenuPanel/ChangeCardButton" to="Background/ContextMenuPanel/ChangeCardButton" method="_on_pressed"]
+[connection signal="pressed" from="Background/ResultsPanel/ReadyButton" to="Background/ResultsPanel/ReadyButton" method="_on_pressed"]
+[connection signal="game_updated" from="GameConnection" to="Background/GameSummaryPanel/VBoxContainer/RoundLabel" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/GameSummaryPanel/VBoxContainer/BankLabel" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/StatusPanel/StatusLabel" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/LogPanel/LogScroll" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/LogPanel/LogScroll/Log" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/CardPanel" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/CardPanel/CardTextLabel" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/CardPanel/AnswerButtonsPanel/AnswerAButton" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/CardPanel/AnswerButtonsPanel/AnswerBButton" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/CardPanel/AnswerButtonsPanel/AnswerCButton" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/PlayerListContainer/PlayerList" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/ContextMenuPanel" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/ContextMenuPanel/BetButton" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/ContextMenuPanel/ChangeCardButton" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/ResultsPanel/ResultsLabel" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/ResultsPanel/ResultsList" method="_on_game_connection_game_updated"]
+[connection signal="game_updated" from="GameConnection" to="Background/ResultsPanel/ReadyButton" method="_on_game_connection_game_updated"]

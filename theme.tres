@@ -1,10 +1,10 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bw7lh532ke44a"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bw7lh532ke44a"]
 
 [ext_resource type="StyleBox" uid="uid://dqbfi8icwbqsy" path="res://panel_box_texture.tres" id="1_2mk6g"]
 [ext_resource type="Texture2D" uid="uid://bgn10js18mt2m" path="res://ui/Tiny Wonder UI/buttons.png" id="1_55g1l"]
 [ext_resource type="StyleBox" uid="uid://cqpyu6qn1u2pv" path="res://button_texture_normal.tres" id="1_h7elq"]
-[ext_resource type="Texture2D" uid="uid://c4js3vo440f1f" path="res://ui/Tiny Wonder UI/base.png" id="1_hdrih"]
 [ext_resource type="FontFile" uid="uid://b4h6hmbw2ohpt" path="res://fonts/VT323-Regular.ttf" id="3_upf54"]
+[ext_resource type="StyleBox" uid="uid://dbhcct53d3uot" path="res://label_texture.tres" id="5_xlopu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wpxd1"]
 atlas = ExtResource("1_55g1l")
@@ -19,17 +19,6 @@ texture_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ke21g"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6e2gp"]
-atlas = ExtResource("1_hdrih")
-region = Rect2(6.75536, 438.701, 34.3232, 34.3364)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r5vhh"]
-texture = SubResource("AtlasTexture_6e2gp")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
-
 [resource]
 AcceptDialog/styles/panel = ExtResource("1_2mk6g")
 Button/font_sizes/font_size = 20
@@ -38,13 +27,34 @@ Button/styles/disabled = ExtResource("1_h7elq")
 Button/styles/hover = ExtResource("1_h7elq")
 Button/styles/normal = ExtResource("1_h7elq")
 Button/styles/pressed = SubResource("StyleBoxTexture_pebe6")
+CheckButton/styles/focus = ExtResource("1_h7elq")
 Fonts/fonts/large = ExtResource("3_upf54")
 Fonts/fonts/normal = ExtResource("3_upf54")
 HSeparator/constants/separation = 12
 HSeparator/styles/separator = SubResource("StyleBoxEmpty_ke21g")
-Label/font_sizes/font_size = 24
+ItemList/colors/font_color = Color(100, 100, 100, 1)
+ItemList/colors/font_outline_color = Color(1, 1, 1, 1)
+ItemList/colors/font_selected_color = Color(1, 1, 1, 1)
+ItemList/colors/guide_color = Color(0.7, 0.7, 0.7, 0.25)
+ItemList/font_sizes/font_size = 20
+ItemList/fonts/font = ExtResource("3_upf54")
+ItemList/styles/cursor = null
+ItemList/styles/cursor_unfocused = null
+ItemList/styles/focus = null
+ItemList/styles/panel = ExtResource("5_xlopu")
+ItemList/styles/selected = null
+ItemList/styles/selected_focus = null
+Label/constants/line_spacing = 2
+Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("3_upf54")
-Label/styles/normal = SubResource("StyleBoxTexture_r5vhh")
+Label/styles/normal = ExtResource("5_xlopu")
 LineEdit/fonts/font = ExtResource("3_upf54")
 Panel/styles/panel = ExtResource("1_2mk6g")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 22
+RichTextLabel/font_sizes/italics_font_size = 24
+RichTextLabel/font_sizes/mono_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/normal_font = ExtResource("3_upf54")
 TextEdit/fonts/font = ExtResource("3_upf54")

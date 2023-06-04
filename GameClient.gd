@@ -8,7 +8,7 @@ var ACTION_SUBSCRIBE = "SUBSCRIBE";
 var ACTION_READ = "READ";
 var ACTION_CHANGE_CARD = "CHANGE_CARD";
 var ACTION_ANSWER = "ANSWER";
-var ACTION_GUESS = "GUESS;"
+var ACTION_GUESS = "GUESS";
 var ACTION_READY = "READY";
 var STATUS_GAME_STATE = "STAT";
 
@@ -74,6 +74,9 @@ func send_mark_ready_request():
 	
 func last_state():
 	return self._last_state;
+	
+func player_code():
+	return self._player_code;
 		
 func _ready():
 	set_process(false)
