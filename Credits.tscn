@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds6u72xbwjhdd"]
+
+[ext_resource type="Texture2D" uid="uid://vsfibdgisst" path="res://ui/Clouds/Clouds 7/1.png" id="1_japeb"]
+[ext_resource type="Shader" path="res://MainMenu.gdshader" id="2_ao3lw"]
+[ext_resource type="Texture2D" uid="uid://lhycjuqd2jm1" path="res://ui/Clouds/Clouds 7/4.png" id="3_kx7m0"]
+[ext_resource type="Script" path="res://BackButton.gd" id="4_kpcat"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tfsap"]
+shader = ExtResource("2_ao3lw")
+shader_parameter/scroll_speed = 0.05
+
+[node name="CreditsControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_japeb")
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+material = SubResource("ShaderMaterial_tfsap")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -324.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_kx7m0")
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+text = "Programming: Marcin Sawicki
+SFX: @JDSherbert
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.75
+anchor_right = 0.6
+anchor_bottom = 0.8
+text = "Back"
+script = ExtResource("4_kpcat")
+
+[connection signal="pressed" from="Background/BackButton" to="Background/BackButton" method="_on_pressed"]

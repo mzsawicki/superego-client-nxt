@@ -237,12 +237,9 @@ script = ExtResource("15_ioln3")
 [node name="ResultsPanel" type="VBoxContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.15
-anchor_right = 0.29
-anchor_bottom = 0.5
-offset_right = 7.48798
-offset_bottom = 52.64
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.49
 
 [node name="ResultsLabel" type="Label" parent="Background/ResultsPanel"]
 layout_mode = 2
