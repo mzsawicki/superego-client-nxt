@@ -1,3 +1,3 @@
 # SuperEGO game client
 
-This is a game client for [SupeEGO]([https://pages.github.com/](https://github.com/mzsawicki/superego))
+This is a game client for [SuperEGO](https://github.com/mzsawicki/superego)
